@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import { toast } from 'react-toastify';
 import { SquareContainer, SquareGrid, Square, Icon } from './styles';
 import { useSquareData } from './square.hook';
 import Round from '../Round';
@@ -23,11 +23,6 @@ export default function SquareBoard() {
   ];
 
   function gameOver() {
-    setPlayerChoices({
-      player_1: [],
-      player_2: [],
-    });
-
     squares.map(square => {
       square.player = '';
       square.isChecked = false;
@@ -48,8 +43,12 @@ export default function SquareBoard() {
     const isWinner = verifyMatchChoices.filter(choice => choice === true);
 
     if (isWinner.includes(true)) {
-      alert(`${player} venceu`);
-      gameOver();
+      toast.success(`${player} venceu`);
+      setPlayerChoices({
+        player_1: [],
+        player_2: [],
+      });
+      setTimeout(() => gameOver(), 1000);
     }
   }
 
@@ -67,6 +66,7 @@ export default function SquareBoard() {
 
   function handleOposity(square) {
     if (!square.isChecked) {
+      square.isChecked = true;
       setOposity(!oposity);
       if (!oposity) {
         square.player = player_1;
@@ -85,17 +85,19 @@ export default function SquareBoard() {
 
   function handleAddIcon(square) {
     handleOposity(square);
-    square.isChecked = true;
     setSquares([...squares]);
   }
 
   return (
     <SquareContainer>
-      {console.log(squares)}
       <Round player={nextPlayer} />
       <SquareGrid>
         {squares.map(_square => (
-          <Square key={_square.id} onClick={() => handleAddIcon(_square)}>
+          <Square
+            isChecked={_square.isChecked}
+            key={_square.id}
+            onClick={() => handleAddIcon(_square)}
+          >
             <Icon playerColor={_square.player}>{_square.icon}</Icon>
           </Square>
         ))}
