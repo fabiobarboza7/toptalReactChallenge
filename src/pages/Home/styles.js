@@ -18,5 +18,5 @@ export const Square = styled.div`
 `;
 
 export const Icon = styled.div`
-  color: blue;
+  color: ${({ playerColor }) => (playerColor === 'player_1' ? 'blue' : 'red')};
 `;
