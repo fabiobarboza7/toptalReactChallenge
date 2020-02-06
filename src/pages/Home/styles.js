@@ -7,8 +7,16 @@ export const SquareContainer = styled.div`
 `;
 
 export const Square = styled.div`
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 60px;
   width: 60px;
   background-color: white;
   border: 1px solid #000;
+`;
+
+export const Icon = styled.div`
+  color: blue;
 `;
