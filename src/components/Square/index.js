@@ -1,29 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { toast } from 'react-toastify';
 import { SquareContainer, SquareGrid, Square, Icon } from './styles';
-import { useSquareData } from './square.hook';
 import Round from '../Round';
+import correctAnswers from './correctAnswers';
+
+import {
+  useSquareData,
+  useOposity,
+  useNextPlayer,
+  usePlayerChoice,
+} from './hooks';
 
 export default function SquareBoard() {
   const [squares, setSquares] = useSquareData();
   const [xIcon, oIcon] = ['×', 'o'];
   const [player_1, player_2] = ['player_1', 'player_2'];
-  const [oposity, setOposity] = useState(false);
-  const [nextPlayer, setNextPlayer] = useState(player_1);
-  const [playerChoices, setPlayerChoices] = useState({
-    player_1: [],
-    player_2: [],
-  });
-  const corretAnswers = [
-    [1, 2, 3],
-    [1, 4, 7],
-    [2, 5, 8],
-    [3, 6, 9],
-    [4, 5, 6],
-    [7, 8, 9],
-    [1, 5, 9],
-    [3, 5, 1],
-  ];
+  const [oposity, setOposity] = useOposity();
+  const [nextPlayer, setNextPlayer] = useNextPlayer(player_1);
+  const [playerChoices, setPlayerChoices] = usePlayerChoice();
 
   function gameOver() {
     squares.map(square => {
@@ -39,7 +33,7 @@ export default function SquareBoard() {
   }
 
   function verifyWinner(player) {
-    const verifyMatchChoices = corretAnswers.map(match =>
+    const verifyMatchChoices = correctAnswers.map(match =>
       match.every(e => playerChoices[player].includes(e))
     );
 
