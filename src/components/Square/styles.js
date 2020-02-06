@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const SquareContainer = styled.div`
   height: calc(100vh - 83px);
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
@@ -25,5 +26,6 @@ export const Square = styled.div`
 `;
 
 export const Icon = styled.div`
-  color: ${({ playerColor }) => (playerColor === 'player_1' ? 'blue' : 'red')};
+  color: ${({ playerColor }) => (playerColor === 'Player 1' ? 'blue' : 'red')};
+  font-weight: bold;
 `;

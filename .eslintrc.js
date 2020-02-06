@@ -33,6 +33,7 @@ module.exports = {
       {extensions: ['.jsx', '.js']}
     ],
     'import/prefer-default-export': 'off',
+    'camelcase': 'off',
     'no-underscore-dangle': 'off',
     'no-param-reassign': 'off',
     'react/prop-types': 'off',
