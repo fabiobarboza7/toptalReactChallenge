@@ -1,7 +1,17 @@
 import React from 'react';
 
-import { Square } from './styles.js'
+import { SquareContainer, Square } from './styles.js'
 
 export default function Home() {
-  return <Square />
+  return <SquareContainer>
+    <Square />
+    <Square />
+    <Square />
+    <Square />
+    <Square />
+    <Square />
+    <Square />
+    <Square />
+    <Square />
+  </SquareContainer>
 }
