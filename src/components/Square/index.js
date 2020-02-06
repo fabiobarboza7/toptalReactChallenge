@@ -16,6 +16,9 @@ export default function SquareBoard() {
   });
   const corretAnswers = [
     [1, 2, 3],
+    [1, 4, 7],
+    [2, 5, 8],
+    [3, 6, 9],
     [4, 5, 6],
     [7, 8, 9],
     [1, 5, 9],
@@ -44,11 +47,11 @@ export default function SquareBoard() {
 
     if (isWinner.includes(true)) {
       toast.success(`${player} venceu`);
+      setTimeout(() => gameOver(), 1000);
       setPlayerChoices({
         player_1: [],
         player_2: [],
       });
-      setTimeout(() => gameOver(), 1000);
     }
   }
 
